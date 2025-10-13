@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <math.h>
 
 int main() {
     //Exercice 1
@@ -20,38 +23,70 @@ int main() {
     scanf("%d", &t);
     printf("Sur combien d'annees ? ");
     scanf("%d", &n);
-    float mensualite = (C * ((t) / 12)) / (1 - (1 +t/12) * pow(-n+12));
+    float r = t / 100.0 / 12;
+    int num_months = n * 12;
+    float mensualite = C * (r * pow(1 + r, num_months)) / (pow(1 + r, num_months) - 1);
     printf("Votre mensualite est de : %.2f\n", mensualite);
-    
+
     //Exercice 3
-    // Jeu du pendu
-    char mot[20];
-    char lettre;
-    int essais = 8;
-    printf("Entrez le mot a deviner (max 20 lettres) : ");
-    scanf("%s", mot);
-    char mot_cache[20];
-    for (int i = 0; i < strlen(mot); i++) {
-        mot_cache[i] = '_';
-    }
-    mot_cache[strlen(mot)] = '\0';
-    while (essais > 0) {
-        printf("Mot a deviner : %s\n", mot_cache);
-        printf("Il vous reste %d essais. Entrez une lettre : ", essais);
-        scanf(" %c", &lettre);
-        int trouve = 0;
-        for (int i = 0; i < strlen(mot); i++) {
-            if (mot[i] == lettre) {
-                mot_cache[i] = lettre;
-                trouve = 1;
+    const char *stages[10] = {
+        "",
+        "\n\n\n\n\n\n\n-------\n",
+        "\n |\n |\n |\n |\n |\n |\n-------\n",
+        " -------\n |     \n |\n |\n |\n |\n-------\n",
+        " -------\n |     \n |     O\n |\n |\n |\n-------\n",
+        " -------\n |     \n |     O\n |     |\n |\n |\n-------\n",
+        " -------\n |     \n |     O\n |    /|\n |\n |\n |\n-------\n",
+        " -------\n |     \n |     O\n |    /|\\\n |\n |\n |\n-------\n",
+        " -------\n |     \n |     O\n |    /|\\\n |    / \n |\n |\n-------\n",
+        " -------\n |     \n |     O\n |    /|\\\n |    / \\\n |\n-------\n"
+    };
+    char word[] = "ordinateur";
+    int word_len = strlen(word);
+    char display[11];
+    memset(display, '_', word_len);
+    display[word_len] = '\0';
+    int wrong = 0;
+    int guessed[26] = {0};
+    while (wrong < 9 && strchr(display, '_')) {
+        printf("%s\n", stages[wrong]);
+        printf("Mot: %s\n", display);
+        printf("Lettres devinees: ");
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (guessed[c - 'a']) {
+                printf("%c ", c);
             }
         }
-        if (!trouve) {
-            essais--;
+        printf("\nEntrez une lettre: ");
+        char guess;
+        scanf(" %c", &guess);
+        guess = tolower(guess);
+        if (!isalpha(guess)) {
+            printf("Entrez une lettre valide!\n");
+            continue;
         }
-        if (strcmp(mot, mot_cache) == 0) {
-            printf("Felicitation ! Vous avez trouve le mot : %s\n", mot);
-            break;
+        if (guessed[guess - 'a']) {
+            printf("Deja devinee!\n");
+            continue;
+        }
+        guessed[guess - 'a'] = 1;
+        int found = 0;
+        for (int i = 0; i < word_len; i++) {
+            if (tolower(word[i]) == guess) {
+                display[i] = word[i];
+                found = 1;
+            }
+        }
+        if (!found) {
+            wrong++;
         }
     }
-}
+    if (wrong == 9) {
+        printf("%s\n", stages[9]);
+        printf("Perdu! Le mot etait %s\n", word);
+    } else {
+        printf("Gagne! Le mot etait %s\n", word);
+    }
+    return 0;
+
+    
