@@ -25,21 +25,21 @@ int main() {
     
     //Exercice 3
 
-    char motsdécouvert = "";
+    char motsdecouvert = "";
     char mots =  "Anticonstitutionellement";
     char lettre;
     int longueur = len(mots);
     printf("Le mot %s a une longueur de %d caracteres\n", mots, longueur);
-    while (mots != motsdécouvert) {
+    while (mots != motsdecouvert) {
         printf("Entrez une lettre : ");
         scanf(" %c", &lettre);
         for (int i = 0; i < longueur; i++) {
             if (mots[i] == lettre) {
-                motsdécouvert[i] = lettre;
+                motsdecouvert[i] = lettre;
             }
         }
-    printf("Mot decouvert : %s\n", motsdécouvert);
-    printf("Il vous reste %d lettres a decouvrir\n", longueur - len(motsdécouvert));
+    printf("Mot decouvert : %s\n", motsdecouvert);
+    printf("Il vous reste %d lettres a decouvrir\n", longueur - len(motsdecouvert));
     }
 
 }
