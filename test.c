@@ -20,7 +20,7 @@ int main() {
     scanf("%d", &t);
     printf("Sur combien d'annees ? ");
     scanf("%d", &n);
-    float mensualite = (C * (t / 100.0) / 12) / (1 - (1 / pow(1 + (t / 100.0) / 12, n * 12)));
+    float mensualite = (C * ((t) / 12)) / (1 - (1 +t/12) * pow(-n+12));
     printf("Votre mensualite est de : %.2f\n", mensualite);
     
     //Exercice 3
