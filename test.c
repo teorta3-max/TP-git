@@ -87,6 +87,6 @@ int main() {
     } else {
         printf("Gagne! Le mot etait %s\n", word);
     }
-    return 0;
+}
 
     
