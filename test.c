@@ -25,13 +25,33 @@ int main() {
     
     //Exercice 3
     // Jeu du pendu
-
     char mot[20];
-    printf("Entrez un mot a deviner (max 20 lettres) : ");
+    char lettre;
+    int essais = 8;
+    printf("Entrez le mot a deviner (max 20 lettres) : ");
     scanf("%s", mot);
-    int longueur = strlen(mot);
-    char lettresDevinees[20] = {0};
-    int nbLettresDevinees = 0;
-    int nbErreurs = 0;
-    int maxErreurs = 6;
+    char mot_cache[20];
+    for (int i = 0; i < strlen(mot); i++) {
+        mot_cache[i] = '_';
+    }
+    mot_cache[strlen(mot)] = '\0';
+    while (essais > 0) {
+        printf("Mot a deviner : %s\n", mot_cache);
+        printf("Il vous reste %d essais. Entrez une lettre : ", essais);
+        scanf(" %c", &lettre);
+        int trouve = 0;
+        for (int i = 0; i < strlen(mot); i++) {
+            if (mot[i] == lettre) {
+                mot_cache[i] = lettre;
+                trouve = 1;
+            }
+        }
+        if (!trouve) {
+            essais--;
+        }
+        if (strcmp(mot, mot_cache) == 0) {
+            printf("Felicitation ! Vous avez trouve le mot : %s\n", mot);
+            break;
+        }
+    }
 }
