@@ -24,34 +24,14 @@ int main() {
     printf("Votre mensualite est de : %.2f\n", mensualite);
     
     //Exercice 3
+    // Jeu du pendu
 
-    char motsdecouvert = "";
-    char mots =  "Anticonstitutionellement";
-    char lettre;
-    char mort[100] = "";
-    char mort[1] = "\n\n\n\n\n\n\n-------\n";
-    char mort[2] = "\n |\n |\n |\n |\n |\n |\n-------\n" ;
-    char mort[3] = " -------\n |      |\n |\n |\n |\n |\n-------\n" ;
-    char mort[4] = " -------\n |      |\n |     O\n |\n |\n |\n-------\n" ;
-    char mort[5] = " -------\n |      |\n |     O\n |     |\n |\n |\n-------\n";
-    char mort[6] = " -------\n |      |\n |     O\n |    /|\\\n |\n |\n-------\n";
-    char mort[7] = " -------\n |      |\n |     O\n |    /|\\\n |    / \\\n |\n-------\n" ;
-    int essais = 0;
-    while (essais < 7) {
-        printf("entrez une lettre : ");
-        scanf(" %c", &lettre);
-        if (strchr(mots, lettre)) {
-            strcat(motsdecouvert, lettre);
-        } else {
-            essais++;
-            printf("%c\n", mort[essais]);
-        }
-        printf("%s\n", motsdecouvert);
-    }
-    if (essais == 7) {
-        printf("Vous avez perdu ! Le mot etait : %s\n", mots);
-    } else {
-        printf("Vous avez gagne !\n");
-    }
-    return 0;
+    char mot[20];
+    printf("Entrez un mot a deviner (max 20 lettres) : ");
+    scanf("%s", mot);
+    int longueur = strlen(mot);
+    char lettresDevinees[20] = {0};
+    int nbLettresDevinees = 0;
+    int nbErreurs = 0;
+    int maxErreurs = 6;
 }
