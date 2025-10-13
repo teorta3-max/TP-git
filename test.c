@@ -28,18 +28,30 @@ int main() {
     char motsdecouvert = "";
     char mots =  "Anticonstitutionellement";
     char lettre;
-    int longueur = len(mots);
-    printf("Le mot %s a une longueur de %d caracteres\n", mots, longueur);
-    while (mots != motsdecouvert) {
-        printf("Entrez une lettre : ");
+    char mort[100] = "";
+    char mort[1] = "\n\n\n\n\n\n\n-------\n";
+    char mort[2] = "\n |\n |\n |\n |\n |\n |\n-------\n" ;
+    char mort[3] = " -------\n |      |\n |\n |\n |\n |\n-------\n" ;
+    char mort[4] = " -------\n |      |\n |     O\n |\n |\n |\n-------\n" ;
+    char mort[5] = " -------\n |      |\n |     O\n |     |\n |\n |\n-------\n";
+    char mort[6] = " -------\n |      |\n |     O\n |    /|\\\n |\n |\n-------\n";
+    char mort[7] = " -------\n |      |\n |     O\n |    /|\\\n |    / \\\n |\n-------\n" ;
+    int essais = 0;
+    while (essais < 7) {
+        printf("entrez une lettre : ");
         scanf(" %c", &lettre);
-        for (int i = 0; i < longueur; i++) {
-            if (mots[i] == lettre) {
-                motsdecouvert[i] = lettre;
-            }
+        if (strchr(mots, lettre)) {
+            strcat(motsdecouvert, lettre);
+        } else {
+            essais++;
+            printf("%c\n", mort[essais]);
         }
-    printf("Mot decouvert : %s\n", motsdecouvert);
-    printf("Il vous reste %d lettres a decouvrir\n", longueur - len(motsdecouvert));
+        printf("%s\n", motsdecouvert);
     }
-
+    if (essais == 7) {
+        printf("Vous avez perdu ! Le mot etait : %s\n", mots);
+    } else {
+        printf("Vous avez gagne !\n");
+    }
+    return 0;
 }
