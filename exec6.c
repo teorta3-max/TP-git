@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    char nom[4];
+    char nom[10];
     printf("Nom ? ");
     scanf("%s", nom); 
     printf("Bonjour %s\n", nom);
