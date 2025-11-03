@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    int x;
+    int x = 0;  // Initialisation de la variable 'x'
     int y = x + 5;  
     printf("%d\n", y);
     return 0;

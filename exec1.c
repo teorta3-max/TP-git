@@ -3,6 +3,9 @@
 int main() {
     int a = 2;
     int b = 0;
+    if (b == 0) {
+        b = 1;  // éviter la division par zéro
+    }
     int c = a / b;  // crash / comportement indéfini
     printf("%d\n", c);
     return 0;
