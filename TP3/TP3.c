@@ -1,6 +1,8 @@
 #include <stdio.h>
 
+// Exercice 1
 int main() {
+    //étape 1
     int taille;
 
     printf("Saisir une taille n (5 <= n <= 10) : ");
@@ -13,7 +15,8 @@ int main() {
     int width = taille * taille;
     int max_height = 3 * taille - 1;
     char img[100][100];
-    
+
+    // Etape 2
     int i, j;
 
     for (i = 0; i < max_height; i++) {
@@ -21,4 +24,14 @@ int main() {
             img[i][j] = ' ';
         }
     }
+
+    //Etape 3
+
+    for (i = 0; i < max_height; i++) {
+        for (j = 0; j < width; j++) {
+            printf("%c",img[i][j]);
+        }
+        printf("\n");
+    }
+    //Etape4
 }
