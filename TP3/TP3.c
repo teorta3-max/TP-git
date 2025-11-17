@@ -14,5 +14,11 @@ int main() {
     int max_height = 3 * taille - 1;
     char img[100][100];
     
-    
+    int i, j;
+
+    for (i = 0; i < max_height; i++) {
+        for (j = 0; j < width; j++) {
+            img[i][j] = ' ';
+        }
+    }
 }
