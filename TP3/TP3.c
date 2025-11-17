@@ -17,21 +17,51 @@ int main() {
     char img[100][100];
 
     // Etape 2
-    int i, j;
 
-    for (i = 0; i < max_height; i++) {
-        for (j = 0; j < width; j++) {
+    for (int i = 0; i < max_height; i++) {
+        for (int j = 0; j < width; j++) {
             img[i][j] = ' ';
         }
     }
 
     //Etape 3
 
-    for (i = 0; i < max_height; i++) {
-        for (j = 0; j < width; j++) {
-            printf("%c",img[i][j]);
+    for (int k = 0; k < max_height; k++) {
+        for (int l = 0; l < width; l++) {
+            printf("%c",img[k][l]);
         }
         printf("\n");
     }
+
     //Etape4
+
+    int mid = width / 2;
+    for (int i = 0; i < taille; i++) {
+        int gauche = mid - i;
+        int droite = mid + i;
+
+        img[i][gauche] = 'A';
+        img[i][droite] = 'A';
+
+        for (int j = gauche + 1; j < droite; j++) {
+            img[i][j] = 'S';
+        }
+
+        for (int c = 0; c < mid - (taille - 1); c++) {
+            img[taille - 1][c] = '_';
+        }
+
+
+        for (int c = mid + (taille - 1) + 1; c < width; c++) {
+            img[taille - 1][c] = '_';
+        }
+    }
+
+
+    for (int k = 0; k < max_height; k++) {
+        for (int l = 0; l < width; l++) {
+            printf("%c",img[k][l]);
+        }
+        printf("\n");
+    }
 }
