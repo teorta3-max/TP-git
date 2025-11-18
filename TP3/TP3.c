@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-// Exercice 1
-int main() {
+int main()
+{
     //étape 1
     int taille;
 
@@ -17,7 +17,6 @@ int main() {
     char img[100][100];
 
     // Etape 2
-
     for (int i = 0; i < max_height; i++) {
         for (int j = 0; j < width; j++) {
             img[i][j] = ' ';
@@ -64,4 +63,65 @@ int main() {
         }
         printf("\n");
     }
+
+    // étape 5 
+    for (int i = taille; i < taille * 2 - 2; i++)
+    {
+        int init_t = 2 * i - 2 * taille;
+        for (int j = init_t; j < width - init_t; j++)
+        {
+            img[i][j] = 'S';
+
+            if (j == init_t || j == width - init_t - 1)
+            {
+                img[i][j] = '.';
+                img[i][init_t+1] = 'V';
+                img[i][width - init_t-2] = 'V';
+            }
+        }
+    }
+
+    // étape 6
+    int nligne = taille * 2 - 2;
+    for (int i = 0; i < taille + 1; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            img[nligne][j] = 'S';
+        }
+        for (int j = 0; j < 2 * taille - 4 - i; j++)
+        {
+            img[nligne][j] = ' ';
+            img[nligne][width - j - 1] = ' ';
+            if (j == 2 * taille - 5 - i)
+            {
+                img[nligne][width - j - 1] = '.';
+                img[nligne][j] = '.';
+            }
+        }
+        for (int j = mid - 2 * i; j < mid; j++)
+        {
+            img[nligne][j] = ' ';
+            img[nligne][width - j - 1] = ' ';
+            img[nligne][mid] = ' ';
+            if (j == mid - 2 * i)
+            {
+                img[nligne][width - j - 1] = '\"';
+                img[nligne][j] = '\"';
+            }
+        }
+
+        nligne++;
+    }
+
+    // Dessine l'etoile une dernière fois pour voir si c'est juste
+    for (int i = 0; i < max_height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            printf("%c", img[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
 }
