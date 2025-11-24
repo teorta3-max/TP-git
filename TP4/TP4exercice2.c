@@ -26,6 +26,32 @@ int montant_valide(int montant) {
     return 1;
 }
 
+// Etape 4 : Calculer et afficher les billets
+
+void calcul_distribution(int montant) {
+    int billets_50 = montant / 50;
+    montant %= 50;
+    int billets_20 = montant / 20;
+    montant %= 20;
+    int billets_10 = montant / 10;
+    montant %= 10;
+    int billets_5 = montant / 5;
+
+    printf("Distribution des billets :\n");
+    if (billets_50 > 0){
+        printf("Billets de 50€ : %d\n", billets_50);
+    }
+    if (billets_20 > 0){
+        printf("Billets de 20€ : %d\n", billets_20);
+    } 
+    if (billets_10 > 0){
+        printf("Billets de 10€ : %d\n", billets_10);
+    }
+    if (billets_5 > 0){
+       printf("Billets de 5€ : %d\n", billets_5); 
+    } 
+}
+
 int main() {
     //On verra quand on aurra toutes les fonctions
 }
