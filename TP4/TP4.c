@@ -108,38 +108,44 @@ void afficherMeilleuresNotes(int nombreEleves, float tab[30][3]) {
 }
 
 // Fonction main
-
+// il faut qu'apres chaque choix, le menu soit affiché de nouveau jusqu'à ce que l'utilisateur choisisse de quitter.
 
 int main() {
     afficherMenu();
-    lireChoix();
+    int choix = lireChoix();
     float notes[30][3];
     int a;
-    if (lireChoix() == 1) {
-        a = saisirNombreEleves();
-    }
-    else if (lireChoix == 2) {
-        saisirNotes(a,notes);
-    }
-    else if (lireChoix == 3) {
-        afficherNotes(a,notes);
-    }
-    else if (lireChoix == 4) {
-        int b;
-        printf("Entrer l'indice de l'eleve (1 a %d): ", a);
-        scanf ("%d", &b);
-        printf("Moyene de l'eleve %d : %.2f\n", b, calculerMoyenneEleve(b-1,notes));
-    }
-    else if (lireChoix == 5) {
-        printf("Moyene generale de la classe: %.2f\n", calculerMoyenneGenerale(a,notes));
-    }
-    else if (lireChoix == 6) {
-        int c;
-        printf("Entrer l'indice du controle (1 a 3): ");
-        scanf ("%d", &c);
-        printf("La meilleure note du controle : %.2f\n", trouverMeilleureNoteControle(c-1,a,notes));
-    }
-    else {
-        printf("Quitter le programme.\n");
+
+    while (choix != 0){
+        if (choix == 1) {
+            a = saisirNombreEleves();
+            
+        }
+        else if (choix == 2) {
+            saisirNotes(a, notes);
+        }
+        else if (choix == 3) {
+            afficherNotes(a, notes);
+        }
+        else if (choix == 4) {
+            int b;
+            printf("Entrer l'indice de l'eleve (1 a %d): ", a);
+            scanf("%d", &b);
+            printf("Moyenne de l'eleve %d : %.2f\n", b, calculerMoyenneEleve(b - 1, notes));
+        }
+        else if (choix == 5) {
+            printf("Moyenne generale de la classe : %.2f\n", calculerMoyenneGenerale(a, notes));
+        }
+        else if (choix == 6) {
+            int c;
+            printf("Entrer l'indice du controle (1 a 3): ");
+            scanf("%d", &c);
+            printf("La meilleure note du controle : %.2f\n", trouverMeilleureNoteControle(c - 1, a, notes));
+        }
+        else {
+            printf("Quitter le programme.\n");
+        }
+        afficherMenu();
+        choix = lireChoix();
     }
 }
