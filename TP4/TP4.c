@@ -98,21 +98,48 @@ float trouverMeilleureNoteControle(int indiceControle, int nombreEleves, float t
     return meilleureNote;
 }
 
+//Étape 9 : Fonction afficherMeilleuresNotes 
+
+void afficherMeilleuresNotes(int nombreEleves, float tab[30][3]) {
+    for (int j = 0; j < 3; j++) {
+        float meilleureNote = trouverMeilleureNoteControle(j, nombreEleves, tab);
+        printf("Meilleure note du controle %d : %.2f\n", j + 1, meilleureNote);
+    }
+}
+
+// Fonction main
+
 
 int main() {
     afficherMenu();
     lireChoix();
     float notes[30][3];
-    int a = saisirNombreEleves();
-    saisirNotes(a,notes);
-    afficherNotes(a,notes);
-    printf("Entrer l'indice de l'eleve (1 a %d): ", a);
-    int b;
-    scanf ("%d", &b);
-    printf("Moyene de l'eleve %d : %.2f\n", b, calculerMoyenneEleve(b-1,notes));
-    printf("Moyene generale de la classe: %.2f\n", calculerMoyenneGenerale(a,notes));
-    int c;
-    printf("Entrer l'indice du controle (1 a 3): ");
-    scanf ("%d", &c);
-    printf("La meilleure note du controle : %.2f\n", trouverMeilleureNoteControle(c-1,a,notes));
+    int a;
+    if (lireChoix() == 1) {
+        a = saisirNombreEleves();
+    }
+    else if (lireChoix == 2) {
+        saisirNotes(a,notes);
+    }
+    else if (lireChoix == 3) {
+        afficherNotes(a,notes);
+    }
+    else if (lireChoix == 4) {
+        int b;
+        printf("Entrer l'indice de l'eleve (1 a %d): ", a);
+        scanf ("%d", &b);
+        printf("Moyene de l'eleve %d : %.2f\n", b, calculerMoyenneEleve(b-1,notes));
+    }
+    else if (lireChoix == 5) {
+        printf("Moyene generale de la classe: %.2f\n", calculerMoyenneGenerale(a,notes));
+    }
+    else if (lireChoix == 6) {
+        int c;
+        printf("Entrer l'indice du controle (1 a 3): ");
+        scanf ("%d", &c);
+        printf("La meilleure note du controle : %.2f\n", trouverMeilleureNoteControle(c-1,a,notes));
+    }
+    else {
+        printf("Quitter le programme.\n");
+    }
 }
