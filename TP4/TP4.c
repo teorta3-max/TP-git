@@ -32,13 +32,31 @@ int saisirNombreEleves() {
         printf("Entrer le nombre d'eleves(1 a 30): ");
         scanf("%d", &nombre);
     }
-    printf("Nombre d'eleves(1 a 30): %d\n", nombre);
     return nombre;
+}
+
+// Étape 4 : Fonction saisirNotes 
+
+int saisirNotes(int nombreEleves) {
+    float notes[30][3];
+    printf("Saisir des notes pour %d eleve et 3 controle.\n", nombreEleves);
+    for (int i = 0; i < nombreEleves; i++) {
+        printf("Eleve %d :\n", i + 1);
+        for (int j = 0; j < 3; j++) {
+            printf("Entrer la note %d: ", j + 1);
+            scanf("%f", &notes[i][j]);
+            if (notes[i][j] < 0 || notes[i][j] > 20) {
+                printf("valeur invalide.\n");
+                j--;
+            }
+        }
+    }
 }
 
 int main() {
     afficherMenu();
     lireChoix();
-    saisirNombreEleves();
+    int a = saisirNombreEleves();
+    saisirNotes(a);
     return 0;
 }
