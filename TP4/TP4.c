@@ -86,6 +86,18 @@ float calculerMoyenneGenerale(int nombreEleves, float tab[30][3]) {
     return sommeMoyennes / nombreEleves;
 }
 
+//Étape 8 : Fonction trouverMeilleureNoteControle 
+
+float trouverMeilleureNoteControle(int indiceControle, int nombreEleves, float tab[30][3]) {
+    float meilleureNote = -1;
+    for (int i = 0; i < nombreEleves; i++) {
+        if (tab[i][indiceControle] > meilleureNote) {
+            meilleureNote = tab[i][indiceControle];
+        }
+    }
+    return meilleureNote;
+}
+
 
 int main() {
     afficherMenu();
@@ -99,4 +111,8 @@ int main() {
     scanf ("%d", &b);
     printf("Moyene de l'eleve %d : %.2f\n", b, calculerMoyenneEleve(b-1,notes));
     printf("Moyene generale de la classe: %.2f\n", calculerMoyenneGenerale(a,notes));
+    int c;
+    printf("Entrer l'indice du controle (1 a 3): ");
+    scanf ("%d", &c);
+    printf("La meilleure note du controle : %.2f\n", trouverMeilleureNoteControle(c-1,a,notes));
 }
