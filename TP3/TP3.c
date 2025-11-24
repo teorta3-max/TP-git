@@ -2,7 +2,7 @@
 
 int main()
 {
-    // Etape 1
+    // Etape 1  
     int taille;
 
     // Demande une taille entre 5 et 10
