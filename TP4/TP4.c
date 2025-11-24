@@ -12,8 +12,17 @@ void afficherMenu() {
     printf("6. Afficher la meilleure note de chaque controle\n");
     printf("0. Quitter\n");
 }
+// Étape 2 : Fonction lireChoix 
+
+int lireChoix() {
+    int choix;
+    scanf("%d", &choix);
+    printf("Votre choix: %d\n", choix);
+    return choix;
+}
 
 int main() {
     afficherMenu();
+    lireChoix();
     return 0;
 }
