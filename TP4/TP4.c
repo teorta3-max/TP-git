@@ -76,6 +76,17 @@ float calculerMoyenneEleve(int indiceEleve, float tab[30][3]) {
     return somme / 3.0;
 }
 
+// Étape 7 : Fonction calculerMoyenneGenerale 
+
+float calculerMoyenneGenerale(int nombreEleves, float tab[30][3]) {
+    float sommeMoyennes = 0;
+    for (int i = 0; i < nombreEleves; i++) {
+        sommeMoyennes += calculerMoyenneEleve(i, tab);
+    }
+    return sommeMoyennes / nombreEleves;
+}
+
+
 int main() {
     afficherMenu();
     lireChoix();
@@ -86,5 +97,6 @@ int main() {
     printf("Entrer l'indice de l'eleve (1 a %d): ", a);
     int b;
     scanf ("%d", &b);
-    printf("moyene de l'eleve %d : %.2f\n", b, calculerMoyenneEleve(b-1,notes));
+    printf("Moyene de l'eleve %d : %.2f\n", b, calculerMoyenneEleve(b-1,notes));
+    printf("Moyene generale de la classe: %.2f\n", calculerMoyenneGenerale(a,notes));
 }
