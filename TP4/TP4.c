@@ -66,6 +66,16 @@ int afficherNotes(int nb , float tab[30][3]){
     }
 }
 
+// Etape 6 : Fonction calculerMoyenneEleve 
+
+float calculerMoyenneEleve(int indiceEleve, float tab[30][3]) {
+    float somme = 0;
+    for (int j = 0; j < 3; j++) {
+        somme += tab[indiceEleve][j];
+    }
+    return somme / 3.0;
+}
+
 int main() {
     afficherMenu();
     lireChoix();
@@ -73,5 +83,8 @@ int main() {
     int a = saisirNombreEleves();
     saisirNotes(a,notes);
     afficherNotes(a,notes);
-    return 0;
+    printf("Entrer l'indice de l'eleve (1 a %d): ", a);
+    int b;
+    scanf ("%d", &b);
+    printf("moyene de l'eleve %d : %.2f\n", b, calculerMoyenneEleve(b-1,notes));
 }
