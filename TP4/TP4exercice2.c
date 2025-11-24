@@ -17,15 +17,15 @@ int saisir_montant() {
     return montant;
 }
 
+// Etape 3 : Vérifier la validité
+
+int montant_valide(int montant) {
+    if (montant <= 0 || montant > 1000 || montant % 5 != 0) {
+        return 0;
+    }
+    return 1;
+}
 
 int main() {
-    afficher_menu();
-    int choix;
-    scanf("%d", &choix);
-    if (choix == 1) {
-        int x = saisir_montant();
-    } 
-    else {
-        
-    }
+    //On verra quand on aurra toutes les fonctions
 }
