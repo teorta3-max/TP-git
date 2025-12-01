@@ -8,5 +8,6 @@ void Menu();
 int lireChoix();
 void initialiser(int conso[]);
 void ajouterConsommation(int conso[]);
+void afficheResume(int conso[]);
 
 #endif

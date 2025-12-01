@@ -44,3 +44,15 @@ void ajouterConsommation(int conso[]) {
     conso[reponse] += quantite;
     printf("Consommation mise a jour.");
 }
+
+void afficheResume(int conso[]) {
+    printf("========== Resume du jour ==========\n");
+    printf("Eau       : %d\n", conso[0]);
+    printf("Cafe      : %d\n", conso[1]);
+    printf("Bonbons   : %d\n", conso[2]);
+    printf("Gateaux   : %d\n", conso[3]);
+    printf("Legumes   : %d\n", conso[4]);
+    printf("Fruits    : %d\n", conso[5]);
+    printf("Proteines : %d\n", conso[6]);
+    printf("====================================\n");
+}
