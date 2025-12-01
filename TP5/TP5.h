@@ -13,6 +13,6 @@ void ajouterConsommation(int conso[]);
 void afficheResume(int conso[]);
 void sauvegarderConsommation(int conso[]);
 int charger(int conso[]);
-
+int sauvegarder(int conso[]);
 
 #endif
