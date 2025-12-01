@@ -1,13 +1,16 @@
 #include "TP5.h"
+#include <time.h>
 
 void Menu() {
     printf("==============================\n");
-    printf("Suivi de consomation\n");
+    printf("Suivi de consommation\n");
     printf("==============================\n");
-    printf("1. Ajouter une consomationn\n");
-    printf("2. Affiche le resume du jour\n");
+    printf("1. Ajouter une consommation\n");
+    printf("2. Afficher le résumé du jour\n");
     printf("3. Afficher objectifs et score\n");
-    printf("4. Sauvegarder et quitter\n");
+    printf("4. Sauvegarder la journée\n");
+    printf("5. Afficher résumé du fichier\n");
+    printf("0. Quitter\n");
     printf("Votre choix: ");
 }
 
@@ -156,7 +159,6 @@ void afficherObjectifsEtScore(int conso[], int objectifs[]) {
 
     for (int i = 0; i < 7; i++) {
 
-        // Café (1), Bonbons (2) et Gâteaux (3) n'ont PAS d'objectif
         if (i == 1 || i == 2 || i == 3) {
             printf("%s : %d (pas d'objectif)\n", categories[i], conso[i]);
         } 
@@ -189,4 +191,49 @@ int calculerScoreSante(int conso[], int objectifs[]) {
     if (score < 0) score = 0;
     if (score > 100) score = 100;
     return score;
+}
+
+int sauvegarderParJour(int conso[]) {
+    FILE* file = fopen("consommation.txt", "a");
+    if (file == NULL) {
+        return 0;
+    }
+
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    fprintf(file, "%04d-%02d-%02d ", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+
+    for (int i = 0; i < 7; i++) {
+        fprintf(file, "%d ", conso[i]);
+    }
+    fprintf(file, "\n");
+    fclose(file);
+    return 1;
+}
+
+void afficherResumeFichier(int afficherTous) {
+    FILE* file = fopen("consommation.txt", "r");
+    if (!file) {
+        printf("Aucune donnée trouvée.\n");
+        return;
+    }
+
+    char ligne[256];
+    while (fgets(ligne, sizeof(ligne), file)) {
+        int conso[7];
+        char date[11];
+
+        if (sscanf(ligne, "%10s %d %d %d %d %d %d %d",
+                   date, &conso[0], &conso[1], &conso[2],
+                   &conso[3], &conso[4], &conso[5], &conso[6]) != 8) {
+            continue;
+        }
+
+        if (afficherTous || feof(file)) {
+            printf("===== Résumé du %s =====\n", date);
+            afficheResume(conso);
+        }
+    }
+
+    fclose(file);
 }

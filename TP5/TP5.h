@@ -20,5 +20,7 @@ int humeurFruits(int nb);
 void afficherBarre(int valeur, int max);
 void afficherObjectifsEtScore(int conso[], int objectifs[]);
 int calculerScoreSante(int conso[], int objectifs[]);
+int sauvegarderParJour(int conso[]);
+void afficherResumeFichier(int afficherTous);
 
 #endif
