@@ -34,15 +34,15 @@ void ajouterConsommation(int conso[]) {
     printf("Votre choix:  ");
     int reponse;
     scanf("%d", &reponse);
-    if (reponse < 0 || reponse > 7) {
+    if (reponse < 1 || reponse > 7) {
         printf("Il n'y en a pas, ressayez.\n");
         return;
     }
-    printf("Combien d'unites ajouter ?");
+    printf("Combien d'unites ajouter ? ");
     int quantite;
     scanf("%d", &quantite);
-    conso[reponse] += quantite;
-    printf("Consommation mise a jour.");
+    conso[reponse - 1] += quantite;
+    printf("Consommation mise a jour.\n");
 }
 
 void afficheResume(int conso[]) {

@@ -3,11 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <windows.h> 
+#include <locale.h>     
+ 
 void Menu();
 int lireChoix();
 void initialiser(int conso[]);
 void ajouterConsommation(int conso[]);
 void afficheResume(int conso[]);
+void sauvegarderConsommation(int conso[]);
 
 #endif
