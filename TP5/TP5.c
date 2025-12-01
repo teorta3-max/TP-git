@@ -46,14 +46,16 @@ void ajouterConsommation(int conso[]) {
 }
 
 void afficheResume(int conso[]) {
+    const char* emojiBonbons[] = {"😊", "😐", "😟", "😢"};
+    const char* emojiVegFruits[] = {"😢", "😐", "😊"};
     printf("========== Resume du jour ==========\n");
-    printf("Eau       : %d\n", conso[0]);
-    printf("Cafe      : %d\n", conso[1]);
-    printf("Bonbons   : %d\n", conso[2]);
-    printf("Gateaux   : %d\n", conso[3]);
-    printf("Legumes   : %d\n", conso[4]);
-    printf("Fruits    : %d\n", conso[5]);
-    printf("Proteines : %d\n", conso[6]);
+    printf("Eau       💧 : %d\n", conso[0]);
+    printf("Cafe      ☕ : %d\n", conso[1]);
+    printf("Bonbons   🍬 : %d %s\n", conso[2], emojiBonbons[humeurBonbons(conso[2])]);
+    printf("Gateau    🍰 : %d\n", conso[3]);
+    printf("Legumes   🥦 : %d %s\n", conso[4], emojiVegFruits[humeurLegumes(conso[4])]);
+    printf("Fruits    🍎 : %d %s\n", conso[5], emojiVegFruits[humeurFruits(conso[5])]);
+    printf("Proteines 🍗 : %d\n", conso[6]);
     printf("====================================\n");
 }
 
@@ -86,3 +88,21 @@ int sauvegarder(int conso[]) {
     return 1;   
 }
 
+int humeurBonbons(int nb) {
+    if (nb >= 0 && nb <= 3) return 0;
+    if (nb >= 4 && nb <= 7) return 1;
+    if (nb >= 8 && nb <= 12) return 2;
+    return 3;
+}
+
+int humeurLegumes(int nb) {
+    if (nb >= 0 && nb <= 2) return 0;
+    if (nb >= 3 && nb <= 5) return 1;
+    return 2;
+}
+
+int humeurFruits(int nb) {
+    if (nb >= 0 && nb <= 1) return 0;
+    if (nb >= 2 && nb <= 3) return 1;
+    return 2;
+}

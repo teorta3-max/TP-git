@@ -14,5 +14,8 @@ void afficheResume(int conso[]);
 void sauvegarderConsommation(int conso[]);
 int charger(int conso[]);
 int sauvegarder(int conso[]);
+int humeurBonbons(int nb);
+int humeurLegumes(int nb);
+int humeurFruits(int nb);
 
 #endif
