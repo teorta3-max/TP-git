@@ -50,13 +50,27 @@ void afficheResume(int conso[]) {
     const char* emojilegume[] = {"😭", "😊", "😎"};
     const char* emojifruits[] = {"🥲", "😊", "😄"};
     printf("========== Resume du jour ==========\n");
-    printf("Eau       💧 : %d\n", conso[0]);
-    printf("Cafe      ☕ : %d\n", conso[1]);
-    printf("Bonbons   🍬 : %d %s\n", conso[2], emojiBonbons[humeurBonbons(conso[2])]);
-    printf("Gateau    🍰 : %d\n", conso[3]);
-    printf("Legumes   🥦 : %d %s\n", conso[4], emojilegume[humeurLegumes(conso[4])]);
-    printf("Fruits    🍎 : %d %s\n", conso[5], emojifruits[humeurFruits(conso[5])]);
-    printf("Proteines 🍗 : %d\n", conso[6]);
+    printf("Eau       💧 : %d ", conso[0]);
+    afficherBarre(conso[0], 10);
+    printf("\n");
+    printf("Cafe      ☕ : %d ", conso[1]);
+    afficherBarre(conso[1], 5);
+    printf("\n");
+    printf("Bonbons   🍬 : %d %s ", conso[2], emojiBonbons[humeurBonbons(conso[2])]);
+    afficherBarre(conso[2], 10);
+    printf("\n");
+    printf("Gateau    🍰 : %d ", conso[3]);
+    afficherBarre(conso[3], 5);
+    printf("\n");
+    printf("Legumes   🥦 : %d %s ", conso[4], emojilegume[humeurLegumes(conso[4])]);
+    afficherBarre(conso[4], 10);
+    printf("\n");
+    printf("Fruits    🍎 : %d %s ", conso[5], emojifruits[humeurFruits(conso[5])]);
+    afficherBarre(conso[5], 10);
+    printf("\n");
+    printf("Proteines 🍗 : %d ", conso[6]);
+    afficherBarre(conso[6], 10);
+    printf("\n");
     printf("====================================\n");
 }
 
@@ -77,10 +91,9 @@ int charger(int conso[]) {
 
 int sauvegarder(int conso[]) {
     FILE* file = fopen("consommation.txt", "w");
-    if (file == NULL)
-    {
+    if (file == NULL) {
         return 0;
-    } 
+    }
     for (int i = 0; i < 7; i++) {
         fprintf(file, "%d ", conso[i]);
     }
@@ -90,20 +103,48 @@ int sauvegarder(int conso[]) {
 }
 
 int humeurBonbons(int nb) {
-    if (nb >= 0 && nb <= 3) return 0;
-    if (nb >= 4 && nb <= 7) return 1;
-    if (nb >= 8 && nb <= 12) return 2;
+    if (nb >= 0 && nb <= 3) {
+        return 0;
+    }
+    if (nb >= 4 && nb <= 7){
+        return 1;
+    }
+    if (nb >= 8 && nb <= 12){
+        return 2;
+    }
     return 3;
 }
 
 int humeurLegumes(int nb) {
-    if (nb >= 0 && nb <= 5) return 0;
-    if (nb >= 6 && nb <= 10) return 1;
+    if (nb >= 0 && nb <= 5) {
+        return 0;
+    }
+    if (nb >= 6 && nb <= 10){
+        return 1;
     return 2;
+    }
 }
 
 int humeurFruits(int nb) {
-    if (nb >= 0 && nb <= 4) return 0;
-    if (nb >= 5 && nb <= 10) return 1;
+    if (nb >= 0 && nb <= 4) {
+        return 0;
+    }
+    if (nb >= 5 && nb <= 10){
+        return 1;
     return 2;
+    }
+}
+
+void afficherBarre(int valeur, int max) {
+    if (max <= 0) max = 1;
+    if (valeur < 0) valeur = 0;
+    if (valeur > max) valeur = max;
+    int casesPleines = (valeur * 10) / max;
+    for (int i = 0; i < 10; i++) {
+        if (i < casesPleines) {
+            printf("█");
+        } else {
+            printf("░");
+        }
+    }
 }

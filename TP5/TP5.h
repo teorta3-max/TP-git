@@ -17,5 +17,6 @@ int sauvegarder(int conso[]);
 int humeurBonbons(int nb);
 int humeurLegumes(int nb);
 int humeurFruits(int nb);
+void afficherBarre(int valeur, int max);
 
 #endif

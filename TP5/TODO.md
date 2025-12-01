@@ -1,0 +1,2 @@
+- [x] Modify afficheResume in TP5.c to add afficherBarre calls after each category line with appropriate max values.
+- [x] Test the program to ensure bars display correctly.
