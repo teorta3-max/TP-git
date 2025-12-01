@@ -6,12 +6,13 @@ int main() {
     SetConsoleCP(CP_UTF8);
     setlocale(LC_ALL, ".UTF-8");
     int consomation[7];
+    int objectifs[7] = {8, 0, 0, 0, 5, 3, 2};
     if (charger(consomation) == 0) {
         printf("Aucune sauvegarde trouvée\n");
         initialiser(consomation);
     }
     int choix = 0;
-    while (choix != 3) {
+    while (choix != 4) {
         Menu();
         choix = lireChoix();
         if (choix == 1) {
@@ -19,6 +20,8 @@ int main() {
         } else if (choix == 2) {
             afficheResume(consomation);
         } else if (choix == 3) {
+            afficherObjectifsEtScore(consomation, objectifs);
+        } else if (choix == 4) {
             if (sauvegarder(consomation) == 1) {
                 printf("Sauvegarde effectue.\n");
             } else {

@@ -3,9 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h> 
-#include <locale.h>     
- 
+#include <windows.h>
+#include <locale.h>
+
 void Menu();
 int lireChoix();
 void initialiser(int conso[]);
@@ -18,5 +18,7 @@ int humeurBonbons(int nb);
 int humeurLegumes(int nb);
 int humeurFruits(int nb);
 void afficherBarre(int valeur, int max);
+void afficherObjectifsEtScore(int conso[], int objectifs[]);
+int calculerScoreSante(int conso[], int objectifs[]);
 
 #endif

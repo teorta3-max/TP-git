@@ -6,7 +6,8 @@ void Menu() {
     printf("==============================\n");
     printf("1. Ajouter une consomationn\n");
     printf("2. Affiche le resume du jour\n");
-    printf("3. Sauvegarder et quitter\n");
+    printf("3. Afficher objectifs et score\n");
+    printf("4. Sauvegarder et quitter\n");
     printf("Votre choix: ");
 }
 
@@ -121,8 +122,8 @@ int humeurLegumes(int nb) {
     }
     if (nb >= 6 && nb <= 10){
         return 1;
-    return 2;
     }
+    return 2;
 }
 
 int humeurFruits(int nb) {
@@ -131,8 +132,8 @@ int humeurFruits(int nb) {
     }
     if (nb >= 5 && nb <= 10){
         return 1;
-    return 2;
     }
+    return 2;
 }
 
 void afficherBarre(int valeur, int max) {
@@ -147,4 +148,45 @@ void afficherBarre(int valeur, int max) {
             printf("░");
         }
     }
+}
+
+void afficherObjectifsEtScore(int conso[], int objectifs[]) {
+    char* categories[] = {"Eau", "Café", "Bonbons", "Gâteaux", "Légumes", "Fruits", "Protéines"};
+    printf("\nObjectifs:\n");
+
+    for (int i = 0; i < 7; i++) {
+
+        // Café (1), Bonbons (2) et Gâteaux (3) n'ont PAS d'objectif
+        if (i == 1 || i == 2 || i == 3) {
+            printf("%s : %d (pas d'objectif)\n", categories[i], conso[i]);
+        } 
+        else {
+            const char* symbole = (conso[i] >= objectifs[i]) ? "✅" : "❌";
+            printf("%s : %d %s\n", categories[i], conso[i], symbole);
+        }
+    }
+
+    int score = calculerScoreSante(conso, objectifs);
+    printf("Score de santé: %d/100\n", score);
+}
+
+int calculerScoreSante(int conso[], int objectifs[]) {
+    int score = 50;
+    if (conso[0] >= objectifs[0]) score += 10;
+    if (conso[4] >= objectifs[4]) score += 10;
+    if (conso[5] >= objectifs[5]) score += 10; 
+    if (conso[6] >= objectifs[6]) score += 10;
+    if (conso[2] > 5) { 
+        int malus = (conso[2] - 5) * 1;
+        if (malus > 15) malus = 15;
+        score -= malus;
+    }
+    if (conso[1] > 3) { 
+        int malus = (conso[1] - 3) * 2;
+        if (malus > 20) malus = 20;
+        score -= malus;
+    }
+    if (score < 0) score = 0;
+    if (score > 100) score = 100;
+    return score;
 }
