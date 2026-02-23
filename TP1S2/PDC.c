@@ -21,3 +21,16 @@ void demander(int *rangees,int *tables,char nomdufichier[]){
 
     fclose(fichier);
 }
+
+int creesalle(int rangees,int tables,char nomdufichier[],int tab[rangees][tables]){
+    Place place;
+    int tab[rangees][tables];
+    for (int i = 0; i < rangees; i++) {
+        for (int j = 0; j < tables; j++) {
+            place.numderangee = i;
+            place.numerodetable = j;
+            place.indicateuroccupee = 0;
+            tab[i][j] = place.indicateuroccupee;
+        }
+    }
+}

@@ -15,9 +15,10 @@ typedef struct
 {
     int numderangee;
     int numerodetable;
-    int indicateuroccupee ;
+    int indicateuroccupee;
 }Place;
 
 void demander(int *rangees,int *tables,char nomdufichier[]);
+void creesalle(int rangees,int tables,char nomdufichier[],int tab[rangees][tables]);
 
 #endif
