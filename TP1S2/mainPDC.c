@@ -8,16 +8,10 @@ int main()
     int nbEleves;
     int nbRangees, nbTables;
 
-    srand(time(NULL));
+    srand(time(NULL));// pour le mélange aléatoire
 
-    eleves = demander(&nbEleves,
-                      &nbRangees,
-                      &nbTables);
+    eleves = demander(&nbEleves,&nbRangees,&nbTables);
 
-    creerSalle(eleves,
-               nbEleves,
-               nbRangees,
-               nbTables);
-
+    creerSalle(eleves,nbEleves,nbRangees,nbTables);
     return 0;
 }

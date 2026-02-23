@@ -7,13 +7,10 @@
 /* ===============================
    ETAPE 1 : Lecture des données
    =============================== */
-Eleve* demander(int *nbEleves,
-                int *nbRangees,
-                int *nbTables)
+Eleve* demander(int *nbEleves,int *nbRangees,int *nbTables)
 {
-    char fichier[100];
+    char fichier[100];// On crée
     char prenom[100], nom[100];
-    FILE *f;
 
     printf("Nombre de rangees : ");
     scanf("%d", nbRangees);
@@ -22,26 +19,23 @@ Eleve* demander(int *nbEleves,
     scanf("%d", nbTables);
 
     printf("Nom du fichier (.txt) : ");
-    scanf("%s", fichier);
+    scanf("%s", fichier);// on demande
 
-    f = fopen(fichier, "r");
+    FILE * f = fopen(fichier, "r");//on lit
     if (!f) {
         printf("Erreur ouverture fichier\n");
-        exit(1);
-    }
+        exit(1);// ou return
+    }// ligne de bases pour les bugs
 
     Eleve *eleves = NULL;
     *nbEleves = 0;
 
     while (fscanf(f, "%s %s", prenom, nom) == 2) {
+ // lit chaque ligne du fichier avec un nom et un prenom
+        eleves = realloc(eleves,(*nbEleves + 1) * sizeof(Eleve));// Ajoute un nouvel éleve 
 
-        eleves = realloc(eleves,
-                         (*nbEleves + 1) * sizeof(Eleve));
-
-        eleves[*nbEleves].prenom =
-            malloc(strlen(prenom) + 1);
-        eleves[*nbEleves].nom =
-            malloc(strlen(nom) + 1);
+        eleves[*nbEleves].prenom = malloc(strlen(prenom) + 1);
+        eleves[*nbEleves].nom = malloc(strlen(nom) + 1);// on garde des espaces et le plus 1 c pour le 0 a la fin automatique
 
         strcpy(eleves[*nbEleves].prenom, prenom);
         strcpy(eleves[*nbEleves].nom, nom);
@@ -58,7 +52,7 @@ Eleve* demander(int *nbEleves,
         eleves[i] = eleves[j];
         eleves[j] = temp;
     }
-
+// ca c juste du random
     return eleves;
 }
 
