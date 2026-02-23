@@ -5,20 +5,21 @@
 #include <windows.h>
 #include <locale.h>
 
-typedef struct
-{
-    char prenom[50];
-    char nom[50];
-}Eleve;
+typedef struct {
+    char *prenom;
+    char *nom;// avec pointeur c mieux
+} Eleve;
 
 typedef struct
 {
     int numderangee;
     int numerodetable;
     int indicateuroccupee;
+    Eleve eleve;// C mieux que de faire un tableau de char pour le nom et le prenom, on peut faire une structure eleve qui contient les deux et ensuite l'inclure dans la structure place, comme ça on peut facilement accéder au nom et au prenom de l'élève qui occupe la place.
 }Place;
 
-void demander(int *rangees,int *tables,char nomdufichier[]);
-void creesalle(int rangees,int tables,char nomdufichier[],int tab[rangees][tables]);
+Eleve * demander(int *nbEleves,int *nbRangees,int *nbTables);
+
+void creerSalle(Eleve *eleves,int nbEleves,int nbRangees,int nbTables);
 
 #endif

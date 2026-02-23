@@ -1,36 +1,145 @@
-#include "PDC.h"
-#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include "PDC.h"
 
-void demander(int *rangees,int *tables,char nomdufichier[]){
+/* ===============================
+   ETAPE 1 : Lecture des données
+   =============================== */
+Eleve* demander(int *nbEleves,
+                int *nbRangees,
+                int *nbTables)
+{
+    char fichier[100];
+    char prenom[100], nom[100];
+    FILE *f;
 
-    printf("Quel est le nombre de rangees?\n");
-    scanf("%d",rangees);
-    printf("Quel est le nombre de tables?\n");
-    scanf("%d",tables);
-    printf("Quel est le nom du fichier\n");
-    scanf("%s",nomdufichier);
+    printf("Nombre de rangees : ");
+    scanf("%d", nbRangees);
 
-    FILE * fichier = fopen(nomdufichier, "r");
+    printf("Nombre de tables par rangee : ");
+    scanf("%d", nbTables);
 
-    if (fichier == NULL) {
-        printf("Erreur : impossible d'ouvrir le fichier %s\n", nomdufichier);
+    printf("Nom du fichier (.txt) : ");
+    scanf("%s", fichier);
+
+    f = fopen(fichier, "r");
+    if (!f) {
+        printf("Erreur ouverture fichier\n");
+        exit(1);
     }
 
-    fclose(fichier);
+    Eleve *eleves = NULL;
+    *nbEleves = 0;
+
+    while (fscanf(f, "%s %s", prenom, nom) == 2) {
+
+        eleves = realloc(eleves,
+                         (*nbEleves + 1) * sizeof(Eleve));
+
+        eleves[*nbEleves].prenom =
+            malloc(strlen(prenom) + 1);
+        eleves[*nbEleves].nom =
+            malloc(strlen(nom) + 1);
+
+        strcpy(eleves[*nbEleves].prenom, prenom);
+        strcpy(eleves[*nbEleves].nom, nom);
+
+        (*nbEleves)++;
+    }
+
+    fclose(f);
+
+    /* Mélange aléatoire */
+    for (int i = *nbEleves - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        Eleve temp = eleves[i];
+        eleves[i] = eleves[j];
+        eleves[j] = temp;
+    }
+
+    return eleves;
 }
 
-int creesalle(int rangees,int tables,char nomdufichier[],int tab[rangees][tables]){
-    Place place;
-    int tab[rangees][tables];
-    for (int i = 0; i < rangees; i++) {
-        for (int j = 0; j < tables; j++) {
-            place.numderangee = i;
-            place.numerodetable = j;
-            place.indicateuroccupee = 0;
-            tab[i][j] = place.indicateuroccupee;
+
+/* =========================================
+   ETAPE 2, 3 et 4 : Création + Placement + Affichage
+   ========================================= */
+void creerSalle(Eleve *eleves,
+                int nbEleves,
+                int nbRangees,
+                int nbTables)
+{
+    int total = nbRangees * nbTables;
+    Place *salle = malloc(total * sizeof(Place));
+
+    /* ETAPE 2 : Initialisation des places */
+    for (int r = 0; r < nbRangees; r++) {
+        for (int t = 0; t < nbTables; t++) {
+
+            int pos = r * nbTables + t;
+
+            salle[pos].numderangee = r;
+            salle[pos].numerodetable = t;
+            salle[pos].indicateuroccupee = 0;
         }
     }
+
+    /* ETAPE 3 : Placement avec contraintes */
+
+    int indexEleve = 0;
+
+    /* 1er passage : tables paires (espacement maximum) */
+    for (int r = 0; r < nbRangees && indexEleve < nbEleves; r++) {
+        for (int t = 0; t < nbTables && indexEleve < nbEleves; t += 2) {
+
+            int pos = r * nbTables + t;
+
+            salle[pos].eleve = eleves[indexEleve++];
+            salle[pos].indicateuroccupee = 1;
+        }
+    }
+
+    /* 2e passage : tables impaires */
+    for (int r = 0; r < nbRangees && indexEleve < nbEleves; r++) {
+        for (int t = 1; t < nbTables && indexEleve < nbEleves; t += 2) {
+
+            int pos = r * nbTables + t;
+
+            salle[pos].eleve = eleves[indexEleve++];
+            salle[pos].indicateuroccupee = 1;
+        }
+    }
+
+    /* ETAPE 4 : Affichage */
+    printf("\n===== PLAN FINAL =====\n\n");
+
+    for (int r = 0; r < nbRangees; r++) {
+
+        printf("Rangee %d :\n", r + 1);
+
+        for (int t = 0; t < nbTables; t++) {
+
+            int pos = r * nbTables + t;
+
+            if (salle[pos].indicateuroccupee)
+                printf("[%-10s %-10s] ",
+                       salle[pos].eleve.prenom,
+                       salle[pos].eleve.nom);
+            else
+                printf("[     VIDE     ] ");
+        }
+
+        printf("\n\n");
+    }
+
+    /* Libération mémoire */
+    for (int i = 0; i < nbEleves; i++) {
+        free(eleves[i].prenom);
+        free(eleves[i].nom);
+    }
+
+    free(eleves);
+    free(salle);
 }
