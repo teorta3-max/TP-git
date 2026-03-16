@@ -4,9 +4,7 @@
 #include <time.h>
 #include "PDC.h"
 
-/* ===============================
-   ETAPE 1 : Lecture des données
-   =============================== */
+/*ETAPE 1 : Lecture des données*/
 Eleve* demander(int *nbEleves,int *nbRangees,int *nbTables)
 {
     char fichier[100];// On crée
@@ -40,7 +38,7 @@ Eleve* demander(int *nbEleves,int *nbRangees,int *nbTables)
         strcpy(eleves[*nbEleves].prenom, prenom);
         strcpy(eleves[*nbEleves].nom, nom);
 
-        (*nbEleves)++;
+        (*nbEleves)++;// pour changer d'eleve
     }
 
     fclose(f);
@@ -57,25 +55,20 @@ Eleve* demander(int *nbEleves,int *nbRangees,int *nbTables)
 }
 
 
-/* =========================================
-   ETAPE 2, 3 et 4 : Création + Placement + Affichage
-   ========================================= */
-void creerSalle(Eleve *eleves,
-                int nbEleves,
-                int nbRangees,
-                int nbTables)
+/*ETAPE 2, 3 et 4 : Création + Placement + Affichage*/
+void creerSalle(Eleve *eleves,int nbEleves,int nbRangees,int nbTables)
 {
     int total = nbRangees * nbTables;
-    Place *salle = malloc(total * sizeof(Place));
+    Place *salle = malloc(total * sizeof(Place));// on crée la salle
 
     /* ETAPE 2 : Initialisation des places */
-    for (int r = 0; r < nbRangees; r++) {
-        for (int t = 0; t < nbTables; t++) {
+    for (int i = 0; i < nbRangees; i++) {
+        for (int j = 0; j < nbTables; j++) {
 
-            int pos = r * nbTables + t;
+            int pos = i * nbTables + j;
 
-            salle[pos].numderangee = r;
-            salle[pos].numerodetable = t;
+            salle[pos].numderangee = i;
+            salle[pos].numerodetable = j;
             salle[pos].indicateuroccupee = 0;
         }
     }
@@ -85,10 +78,10 @@ void creerSalle(Eleve *eleves,
     int indexEleve = 0;
 
     /* 1er passage : tables paires (espacement maximum) */
-    for (int r = 0; r < nbRangees && indexEleve < nbEleves; r++) {
-        for (int t = 0; t < nbTables && indexEleve < nbEleves; t += 2) {
+    for (int i = 0; i < nbRangees && indexEleve < nbEleves; i++) {
+        for (int j = 0; j < nbTables && indexEleve < nbEleves; j += 2) {
 
-            int pos = r * nbTables + t;
+            int pos = i * nbTables + j;
 
             salle[pos].eleve = eleves[indexEleve++];
             salle[pos].indicateuroccupee = 1;
@@ -96,10 +89,10 @@ void creerSalle(Eleve *eleves,
     }
 
     /* 2e passage : tables impaires */
-    for (int r = 0; r < nbRangees && indexEleve < nbEleves; r++) {
-        for (int t = 1; t < nbTables && indexEleve < nbEleves; t += 2) {
+    for (int i = 0; i < nbRangees && indexEleve < nbEleves; i++) {
+        for (int j = 1; j < nbTables && indexEleve < nbEleves; j += 2) {
 
-            int pos = r * nbTables + t;
+            int pos = i * nbTables + j;
 
             salle[pos].eleve = eleves[indexEleve++];
             salle[pos].indicateuroccupee = 1;
