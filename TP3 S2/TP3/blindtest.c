@@ -123,8 +123,9 @@ Song * load_songs(const char *filename, Song songs[]) {
             continue;
         }
 
-// TO DO
-// STOCKER LES CHANSONS
+        strcpy(songs[count].liste, liste);
+        strcpy(songs[count].titre, titre);
+        strcpy(songs[count].artiste, artiste);
 
         count++;
     }
