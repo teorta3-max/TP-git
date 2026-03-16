@@ -19,11 +19,10 @@ void trim_newline(char *s);
 void normalize_string(char *dest, const char *src);
 int string_equals_normalized(const char *a, const char *b);
 void play_song_excerpt_at(const char *filename, int start, int seconds);
-Song * load_songs(const char *filename, Song songs[]);
+int load_songs(const char *filename, Song songs[]); // j'ai completée c bon ça 
 
 /* a faire  */
 
-int charger_chansons(Song songs[]);
 void melanger_chansons(Song songs[], int n);
 
 Score * charger_scores();

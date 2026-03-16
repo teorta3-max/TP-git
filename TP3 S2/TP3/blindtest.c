@@ -91,7 +91,7 @@ void play_song_excerpt_at(const char *filename, int start, int seconds) {
 Charge les morceaux depuis songs.txt dans un tableau.
 Retourne le nombre de morceaux chargés.
 */
-Song * load_songs(const char *filename, Song songs[]) {
+int load_songs(const char *filename, Song songs[]) {
     FILE *f;
     char line[3 * 256];
     int count = 0;
@@ -143,4 +143,8 @@ void melanger_chansons(Song songs[], int nombredemelange) {
         songs[i] = songs[j];
         songs[j] = temp;
     }
+}
+
+Score * charger_scores(){
+    
 }
