@@ -25,6 +25,7 @@ int load_songs(const char *filename, Song songs[]); // j'ai completée c bon ça
 
 void melanger_chansons(Song songs[], int n);
 
+int compter_chansons();
 Score * charger_scores();
 Score * update_score(Score *list, const char *player, int score);
 void sauver_scores(Score *list);

@@ -148,3 +148,22 @@ void melanger_chansons(Song songs[], int nombredemelange) {
 Score * charger_scores(){
     
 }
+
+int compter_chansons() {// Cette fonction permet de compter le nombre de fichier dans un dossier(j'ai utilisée l'IA sous votre demande)
+
+    FILE *fp;
+    int nombre = 0;
+
+    fp = popen("dir /b musics\\song*.mp3 | find /c /v \"\"", "r");
+
+    if (fp == NULL) {
+        printf("Erreur popen\n");
+        return -1;
+    }
+
+    fscanf(fp, "%d", &nombre);
+
+    pclose(fp);
+
+    return nombre;
+}
