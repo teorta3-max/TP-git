@@ -5,7 +5,6 @@
 #include <time.h>
 #include <ctype.h>
 
-
 /* -------------------------------------------------- */
 /* OUTILS SUR LES CHAINES                             */
 /* -------------------------------------------------- */
@@ -132,4 +131,16 @@ Song * load_songs(const char *filename, Song songs[]) {
 
     fclose(f);
     return count;
+}
+
+void melanger_chansons(Song songs[], int nombredemelange) {
+
+    for(int i = nombredemelange - 1; i > 0; i--) {// -1 sinon sa va bugger comme on aurra que un dernier element
+
+        int j = rand() % (i + 1);
+
+        Song temp = songs[i];
+        songs[i] = songs[j];
+        songs[j] = temp;
+    }
 }
