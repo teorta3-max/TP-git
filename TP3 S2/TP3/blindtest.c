@@ -92,7 +92,7 @@ void play_song_excerpt_at(const char *filename, int start, int seconds) {
 Charge les morceaux depuis songs.txt dans un tableau.
 Retourne le nombre de morceaux chargés.
 */
-/***/ load_songs(/***/filename, /***/) {
+Song * load_songs(const char *filename, Song songs[]) {
     FILE *f;
     char line[3 * 256];
     int count = 0;
@@ -104,9 +104,9 @@ Retourne le nombre de morceaux chargés.
     }
 
     while (fgets(line, sizeof(line), f) != NULL && count < 100) {
-        char *file;
-        char *title;
-        char *artist;
+        char * liste;
+        char * titre;
+        char * artiste;
 
         trim_newline(line);
 
@@ -114,11 +114,11 @@ Retourne le nombre de morceaux chargés.
             continue;
         }
 
-        file = strtok(line, ";");
-        title = strtok(NULL, ";");
-        artist = strtok(NULL, ";");
+        liste = strtok(line, ";");
+        titre = strtok(NULL, ";");
+        artiste = strtok(NULL, ";");
 
-        if (file == NULL || title == NULL || artist == NULL) {
+        if (liste == NULL || titre == NULL || artiste == NULL) {
             printf("Ligne ignoree dans songs.txt.\n");
             continue;
         }
