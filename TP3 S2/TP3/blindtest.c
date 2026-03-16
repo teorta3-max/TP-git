@@ -149,7 +149,7 @@ Score * charger_scores(){
     
 }
 
-int compter_chansons() {// Cette fonction permet de compter le nombre de fichier dans un dossier(j'ai utilisée l'IA sous votre demande)
+int compter_chansons() {
 
     FILE *fp;
     int nombre = 0;
