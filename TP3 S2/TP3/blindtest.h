@@ -1,33 +1,29 @@
 #ifndef BLINDTEST_H
 #define BLINDTEST_H
 
-typedef struct Score {
-    char joueur[100];
-    int score;
-    struct Score * suivant;
-} Score;
-
-typedef struct Song {
+typedef struct {
+    char chemin[256];
     char titre[100];
     char artiste[100];
-    char liste[100];
 } Song;
 
-/* daja donnee */
+typedef struct Score {
+    char nom[50];
+    int meilleur_score;
+    struct Score* suivant;
+} Score;
 
-void trim_newline(char *s);
-void normalize_string(char *dest, const char *src);
-int string_equals_normalized(const char *a, const char *b);
-void play_song_excerpt_at(const char *filename, int start, int seconds);
-int load_songs(const char *filename, Song songs[]); // j'ai completée c bon ça 
+// chansons
+int charger_chansons(Song chansons[]);
+void melanger_chansons(Song tab[], int n);
 
-/* a faire  */
+// jeu
+void jouer_musique(char *chemin);
+void to_lower_str(char *s);
 
-void melanger_chansons(Song songs[], int n);
-
-int compter_chansons();
-Score * charger_scores();
-Score * update_score(Score *list, const char *player, int score);
-void sauver_scores(Score *list);
+// scores
+Score* charger_scores();
+void update_score(Score **liste, char *nom, int score);
+void sauver_scores(Score *liste);
 
 #endif

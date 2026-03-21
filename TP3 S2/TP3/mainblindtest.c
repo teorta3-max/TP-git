@@ -1,61 +1,63 @@
-#include "blindtest.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
+#include "blindtest.h"
+
+#define MAX_SONGS 100
 
 int main() {
-
-    Song songs[100];
+    Song chansons[MAX_SONGS];
     int nb_chansons;
-    int i;
-    Score j;
-    char reponse[100];
 
     srand(time(NULL));
 
-    nb_chansons = load_songs("songs.txt", songs);
+    // chargement
+    nb_chansons = charger_chansons(chansons);
+    if (nb_chansons == 0) return 1;
 
-    if (nb_chansons <= 0) {
-        printf("Erreur : aucune chanson chargee.\n");
-        return 1;
-    }
+    // mélange
+    melanger_chansons(chansons, nb_chansons);
 
-    printf("Entrez votre nom : ");
-    scanf("%s", j.joueur);
+    // joueur
+    char nom[50];
+    printf("Nom du joueur : ");
+    scanf("%s", nom);
 
-    j.score = 0;
+    int score = 0;
 
-    for (i = 0; i < nb_chansons; i++) {
+    // jeu
+    for (int i = 0; i < nb_chansons; i++) {
+        printf("\n--- Question %d ---\n", i + 1);
 
-        int debut = rand() % 30;
+        jouer_musique(chansons[i].chemin);
 
-        printf("\n--------------------------\n");
-        printf("Morceau %d sur %d\n", i + 1, nb_chansons);
-        printf("Lecture de l'extrait...\n");
-
-        /* lecture du fichier mp3 */
-        play_song_excerpt_at(songs[i].liste, debut, 10);
-
-        printf("Entrez le titre : ");
+        char reponse[100];
+        printf("Titre ? ");
         scanf(" %[^\n]", reponse);
 
-        if (string_equals_normalized(reponse, songs[i].titre)) {
+        // copie pour comparaison
+        char rep[100], titre[100];
+        strcpy(rep, reponse);
+        strcpy(titre, chansons[i].titre);
 
-            printf("Bonne reponse !\n");
-            j.score++;
+        to_lower_str(rep);
+        to_lower_str(titre);
 
+        if (strcmp(rep, titre) == 0) {
+            printf("Correct !\n");
+            score++;
         } else {
-
-            printf("Mauvaise reponse.\n");
-            printf("Titre attendu : %s\n", songs[i].titre);
-            printf("Artiste : %s\n", songs[i].artiste);
+            printf("Faux ! Réponse : %s\n", chansons[i].titre);
         }
     }
 
-    printf("\n==========================\n");
-    printf("Fin de la partie !\n");
-    printf("Joueur : %s\n", j.joueur);
-    printf("Score final : %d\n", j.score);
+    // fin
+    printf("\nScore final : %d\n", score);
+
+    Score *liste = charger_scores();
+    update_score(&liste, nom, score);
+    sauver_scores(liste);
 
     return 0;
 }
