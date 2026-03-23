@@ -105,5 +105,12 @@ namespace TP4TUtest
 			Assert::AreEqual(contientMajuscule(""), 0);
 		}
 
+		//Si le pointeur egal NULL est passé en paramètre, la fonction ne marche pas et peut causer une erreur de segmentation.
+
+		TEST_METHOD(contientMajuscule5)
+		{
+			Assert::AreEqual(contientMajuscule(NULL), 0);
+		}
+
 	};
 }
