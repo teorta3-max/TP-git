@@ -158,6 +158,8 @@ namespace TP4TUtest
 			Assert::AreEqual(sommeTableau({}, 0), 0);
 		}
 
+		//1)un pointeur null avec une taille de 0 ne posera pas de problème, mais un pointeur null avec une taille supérieure à 0 causera une erreur de segmentation. Il faudrait vérifier que le pointeur n'est pas null avant de faire la boucle.
+		//2) Un pointeur nul avec taille strictement positive ne posera pas de problème, mais un pointeur nul avec une taille supérieure à 0 causera une erreur de segmentation. C'est corrigée, j'ai ajouté une condition pour vérifier que le pointeur n'est pas null avant de faire la boucle.
 
 
 	};
