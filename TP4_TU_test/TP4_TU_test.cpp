@@ -33,17 +33,13 @@ namespace TP4TUtest
 			Assert::AreEqual(estPair(-3), 0);
 		}
 
-		TEST_METHOD(TestESTpair5)
-		{
-			Assert::AreEqual(estPair(-3), 0);
-		}
 		//1) Non
 		//2) Qu'elle est fausse
 		//3) A la base ça ne marchais pas, j'ai du modifier le 0 afin que le chiffre soit pair a la fin de la fonction estPair pour que ça marche. C'est corrigée
 
 		TEST_METHOD(TestMax1)
 		{
-			Assert::AreEqual(max2(2,3), 5);
+			Assert::AreEqual(max2(5,3), 5);
 		}
 
 		TEST_METHOD(TestMax21)
@@ -60,6 +56,9 @@ namespace TP4TUtest
 		{
 			Assert::AreEqual(max2(4,4), 4);
 		}
+
+
+		//1) c'est le premier test qui ne marche pas parce que 5 n'est pas le maximum de 2 et 3
 
 	};
 }
