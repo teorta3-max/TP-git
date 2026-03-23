@@ -58,7 +58,28 @@ namespace TP4TUtest
 		}
 
 
-		//1) c'est le premier test qui ne marche pas parce que 5 n'est pas le maximum de 2 et 3
+		//1) c'est le 3eme test qui ne marche pas parce que c'est plus flagrant que le 1er et le 2eme test.
+		//2) C'est corrigée, j'ai return soit l'un soit l'autre nombre selon lequel est le plus grand, même si les deux sont négatifs, ça marche aussi pour les positifs et les égaux.
+
+		TEST_METHOD(TestFactorielle1)
+		{
+			Assert::AreEqual(factorielle(0), 1);	
+		}
+
+		TEST_METHOD(TestFactorielle1)
+		{
+			Assert::AreEqual(factorielle(1), 1);
+		}
+
+		TEST_METHOD(TestFactorielle1)
+		{
+			Assert::AreEqual(factorielle(4), 24);
+		}
+
+		TEST_METHOD(TestFactorielle1)
+		{
+			Assert::AreEqual(factorielle(5), 120);
+		}
 
 	};
 }
