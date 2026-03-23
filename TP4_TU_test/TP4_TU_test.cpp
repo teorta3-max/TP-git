@@ -66,17 +66,17 @@ namespace TP4TUtest
 			Assert::AreEqual(factorielle(0), 1);	
 		}
 
-		TEST_METHOD(TestFactorielle1)
+		TEST_METHOD(TestFactorielle2)
 		{
 			Assert::AreEqual(factorielle(1), 1);
 		}
 
-		TEST_METHOD(TestFactorielle1)
+		TEST_METHOD(TestFactorielle3)
 		{
 			Assert::AreEqual(factorielle(4), 24);
 		}
 
-		TEST_METHOD(TestFactorielle1)
+		TEST_METHOD(TestFactorielle4)
 		{
 			Assert::AreEqual(factorielle(5), 120);
 		}
