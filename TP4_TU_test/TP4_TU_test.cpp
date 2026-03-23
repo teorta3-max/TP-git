@@ -81,5 +81,10 @@ namespace TP4TUtest
 			Assert::AreEqual(factorielle(5), 120);
 		}
 
+		//On ne peut pas faire la factorielle d'un nombre négatif.
+		//1)Non car mathématiquement c'est impossible.
+		//2) Il faudrai vérifier si n est bien superrieur ou égal a 0 avant de faire la boucle
+
+
 	};
 }
