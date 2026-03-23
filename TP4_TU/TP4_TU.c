@@ -43,7 +43,8 @@ int divisionExacte(int a, int b) {
 
 int sommeTableau(const int tab[], int taille) {
     if (tab == NULL || taille < 0) {
-		return 0; // Traiter les cas où le tableau est NULL ou la taille est négative
+        return 0; // Traiter les cas où le tableau est NULL ou la taille est négative
+    }
     int somme = 0;
     for (int i = 0; i < taille; i++) {
         somme += tab[i];
