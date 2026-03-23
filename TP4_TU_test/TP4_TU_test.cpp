@@ -85,6 +85,25 @@ namespace TP4TUtest
 		//1)Non car mathématiquement c'est impossible.
 		//2) Il faudrai vérifier si n est bien superrieur ou égal a 0 avant de faire la boucle
 
+		TEST_METHOD(contientMajuscule1)
+		{
+			Assert::AreEqual(contientMajuscule("bonjour"), 0);
+		}
+
+		TEST_METHOD(contientMajuscule2)
+		{
+			Assert::AreEqual(contientMajuscule("BonJour"), 1);
+		}
+
+		TEST_METHOD(contientMajuscule3)
+		{
+			Assert::AreEqual(contientMajuscule("ABC"), 1);
+		}
+
+		TEST_METHOD(contientMajuscule4)
+		{
+			Assert::AreEqual(contientMajuscule(""), 0);
+		}
 
 	};
 }
