@@ -126,5 +126,9 @@ namespace TP4TUtest
 		{
 			Assert::AreEqual(divisionExacte(0, 5), 1);
 		}
+
+		//1) parce que l'on ne peut pas diviser un nombre par 0, il faudrait vérifier que b n'est pas égal à 0 avant de faire le calcul.
+		//2) Non, c'est corrigée, j'ai ajouté une condition pour vérifier que b n'est pas égal à 0 avant de faire le calcul.
+
 	};
 }
