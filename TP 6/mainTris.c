@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "Tris.h"
 
 int main() {
@@ -29,4 +30,8 @@ int main() {
     free(tab);
 
     return 0;
+    Medicament m = plusCher(tab, 80);
+    printf("Le medicament le plus cher est %s avec %.2f $\n", m.nom, m.prix);
+
+    printf("Taux de vente = %.2f\n", tauxVente(tab, 80));
 }

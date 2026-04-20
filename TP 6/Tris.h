@@ -19,5 +19,14 @@ typedef struct Medicament {
 int rechercheDichotomique(Medicament *tab, int n);
 void saisir(Medicament *tab, int n);
 void triBulles(Medicament *tab, int n);
+Medicament plusCher(Medicament *tab, int n);
+float tauxVente(Medicament *tab, int n);
+
+typedef struct Node {
+    Medicament data;
+    struct Node *suivant;
+} Node;
+
+void trierListe(Node *head);
 
 #endif
