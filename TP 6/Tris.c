@@ -2,26 +2,32 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-//déja codage de la fonction de recherche dichotomique
+// correction parce que j'ai pas fait gaffe que c'était un mot et pas un tableau d'entiers
 
-int recherche_dichotomique(int t[], int taille, int val) {
-    int debut = 0;
-    int fin = taille - 1;
-    int mil;
+int rechercheDichotomique(Medicament *tab, int n) {
+    int debut = 0, fin = n - 1, mil;
+    int trouve = 0;
 
-    while (debut <= fin) {
+    char val[] = "paracetamol";
+
+    while (debut <= fin && !trouve) {
         mil = (debut + fin) / 2;
 
-        if (t[mil] == val) {
-            return mil;
-        } else if (val > t[mil]) {
+        int cmp = strcmp(tab[mil].nom, val);
+
+        if (cmp == 0) {
+            trouve = 1;
+        } else if (cmp < 0) {
             debut = mil + 1;
         } else {
             fin = mil - 1;
         }
     }
 
-    return -1;
+    if (trouve)
+        return mil;
+    else
+        return -1;
 }
 
 // sous programeme de tri à bulle

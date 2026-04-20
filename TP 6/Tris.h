@@ -16,7 +16,7 @@ typedef struct Medicament {
     int stockrestant;
 } Medicament;
 
-int recherche_dichotomique(int t[], int taille, int val);
+int rechercheDichotomique(Medicament *tab, int n);
 void saisir(Medicament *tab, int n);
 void triBulles(Medicament *tab, int n);
 

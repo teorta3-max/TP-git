@@ -19,6 +19,13 @@ int main() {
 
     printf("\nTableau trie\n");
 
+    int pos = rechercheDichotomique(tab, 80);
+
+    if (pos != -1) {
+        printf("Le medicament paracetamol est au rang %d\n", pos);
+    }else {
+        printf("Medicament non trouve\n");
+    }   
     free(tab);
 
     return 0;
