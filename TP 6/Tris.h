@@ -29,4 +29,14 @@ typedef struct Node {
 
 void trierListe(Node *head);
 
+
+// Exercice 2
+
+typedef struct {
+    char nom[50];
+    char prenom[50];
+    int matricule;
+    float moyenne;
+} Etudiant;
+
 #endif

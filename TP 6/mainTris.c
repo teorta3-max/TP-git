@@ -35,3 +35,23 @@ int main() {
 
     printf("Taux de vente = %.2f\n", tauxVente(tab, 80));
 }
+
+// Exercice 2
+
+int main() {
+    Etudiant tab[100];
+
+    // On remplie le tableau
+
+    // 1. Tri par mérite
+    quickSort(tab, 0, 99);
+    printf("=== Classement par moyenne ===\n");
+    afficher(tab, 100);
+
+    // 2. Tri alphabétique
+    triInsertion(tab, 100);
+    printf("\n=== Ordre alphabetique ===\n");
+    afficher(tab, 100);
+
+    return 0;
+}

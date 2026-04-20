@@ -111,3 +111,48 @@ void trierListe(Node *head) {
         }
     }
 }
+
+// Exercice 2
+
+void echanger(Etudiant *a, Etudiant *b) {
+    Etudiant temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition(Etudiant *tab, int debut, int fin) {
+    float pivot = tab[fin].moyenne;
+    int i = debut - 1;
+
+    for (int j = debut; j < fin; j++) {
+        if (tab[j].moyenne > pivot) { // ordre décroissant
+            i++;
+            echanger(&tab[i], &tab[j]);
+        }
+    }
+
+    echanger(&tab[i + 1], &tab[fin]);
+    return i + 1;
+}
+
+void quickSort(Etudiant *tab, int debut, int fin) {
+    if (debut < fin) {
+        int pi = partition(tab, debut, fin);
+        quickSort(tab, debut, pi - 1);
+        quickSort(tab, pi + 1, fin);
+    }
+}
+
+void triInsertion(Etudiant *tab, int n) {
+    for (int i = 1; i < n; i++) {
+        Etudiant x = tab[i];
+        int j = i;
+
+        while (j > 0 && strcmp(tab[j - 1].nom, x.nom) > 0) {
+            tab[j] = tab[j - 1];
+            j--;
+        }
+
+        tab[j] = x;
+    }
+}
