@@ -6,6 +6,18 @@
 #include <time.h>
 #include <windows.h>
 
+typedef struct Medicament {
+    char nom[50];
+    int code;
+    int dateFabrication;
+    int dateExpiration;
+    float prix;
+    int nbVendus;
+    int stockrestant;
+} Medicament;
 
+int recherche_dichotomique(int t[], int taille, int val);
+void saisir(Medicament *tab, int n);
+void triBulles(Medicament *tab, int n);
 
 #endif

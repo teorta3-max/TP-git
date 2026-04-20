@@ -24,21 +24,46 @@ int recherche_dichotomique(int t[], int taille, int val) {
     return -1;
 }
 
-int main() {
-    int t[] = {1, 3, 5, 7, 9, 11};
-    int taille = sizeof(t) / sizeof(t[0]);
-    int val;
+// sous programeme de tri à bulle
 
-    printf("Saisir la valeur à rechercher : ");
-    scanf("%d", &val);
+void saisir(Medicament *tab, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("\n Medicament %d \n", i + 1);
 
-    int resultat = recherche_dichotomique(t, taille, val);
+        printf("Nom : ");
+        scanf("%s", tab[i].nom);
 
-    if (resultat != -1) {
-        printf("La valeur %d est au rang %d\n", val, resultat);
-    } else {
-        printf("La valeur %d n'est pas dans le tableau\n", val);
+        printf("Code : ");
+        scanf("%d", &tab[i].code);
+
+        printf("Date fabrication (AAAAMMJJ) : ");
+        scanf("%d", &tab[i].dateFabrication);
+
+        printf("Date expiration (AAAAMMJJ) : ");
+        scanf("%d", &tab[i].dateExpiration);
+
+        printf("Prix : ");
+        scanf("%f", &tab[i].prix);
+
+        printf("Nombre vendus : ");
+        scanf("%d", &tab[i].nbVendus);
+
+        printf("Stock restant : ");
+        scanf("%d", &tab[i].stockrestant);
     }
-
-    return 0;
 }
+
+void triBulles(Medicament *tab, int n) {
+    Medicament temp;
+
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (tab[j].dateExpiration > tab[j + 1].dateExpiration) {
+                temp = tab[j];
+                tab[j] = tab[j + 1];
+                tab[j + 1] = temp;
+            }
+        }
+    }
+}
+
